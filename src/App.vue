@@ -3,8 +3,7 @@
     <app-header></app-header>
     <div class="row">
       <div class="col-xs-12">
-    <router-view></router-view>
-
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -15,6 +14,9 @@
   export default {
     components: {
       appHeader: Header
+    },
+    created() {
+      this.$store.dispatch("initStocks");
     }
   };
 </script>
