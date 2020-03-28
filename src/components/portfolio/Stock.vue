@@ -17,6 +17,7 @@
             v-model="quantity"
             class="form-control"
             placeholder="Quantity"
+            :class="{ danger: insufficientQuantity }"
           />
         </div>
         <div class="pull-right">
@@ -38,6 +39,12 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+  .danger {
+    border: 1px solid rgb(224, 25, 25);
+  }
+</style>
 
 <script>
   import { mapActions } from "vuex";
@@ -67,5 +74,3 @@
     }
   };
 </script>
-
-<style></style>
