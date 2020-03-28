@@ -6,7 +6,7 @@
           {{ stock.name }}
           <small
             >(Price: {{ stock.price }} | Quantity:
-            {{ stock.quantiy }})</small
+            {{ stock.quantity }})</small
           >
         </h3>
       </div>
@@ -24,10 +24,14 @@
             @click="sellStock"
             class="btn btn-success"
             :disabled="
-              quantity <= 0 || !!Number.isInteger(quantity)
+              insufficientQuantity ||
+                quantity <= 0 ||
+                !!Number.isInteger(quantity)
             "
           >
-            Sell
+            {{
+              insufficientQuantity ? "Not enough" : "Sell"
+            }}
           </button>
         </div>
       </div>
@@ -44,13 +48,18 @@
         quantity: 0
       };
     },
+    computed: {
+      insufficientQuantity() {
+        return this.quantity > this.stock.quantity;
+      }
+    },
     methods: {
       ...mapActions({ placeSellOrder: "sellStock" }),
       sellStock() {
         const order = {
           stockId: this.stock.id,
           stockPrice: this.stock.price,
-          quantity: this.quantiy
+          quantity: this.quantity
         };
         this.placeSellOrder(order);
         this.quantity = 0;
