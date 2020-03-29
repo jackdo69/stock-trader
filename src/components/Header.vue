@@ -26,7 +26,7 @@
         >
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" @click="endDay">End Day</a></li>
-          <li class="dropdown">
+          <li class="dropdown" >
             <a
               href="#"
               class="dropdown-toggle"
